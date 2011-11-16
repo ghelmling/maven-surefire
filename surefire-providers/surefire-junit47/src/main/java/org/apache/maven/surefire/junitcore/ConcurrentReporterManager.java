@@ -161,6 +161,7 @@ public abstract class ConcurrentReporterManager
     }
 
 
+    private LogicalStream defaultLogicalStream = new LogicalStream();
     public void writeTestOutput( byte[] buf, int off, int len, boolean stdout )
     {
         TestMethod threadTestMethod = TestMethod.getThreadTestMethod();
@@ -171,8 +172,8 @@ public abstract class ConcurrentReporterManager
         }
         else
         {
-            // Not able to assocaite output with any thread. Just dump to console
-            consoleLogger.info( new String( buf, off, len ) );
+            // Not able to associate output with any thread. Just dump to default
+            defaultLogicalStream.write( stdout, buf, off, len );
         }
     }
 

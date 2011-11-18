@@ -30,4 +30,6 @@ public interface ReportEntry
     public StackTraceWriter getStackTraceWriter();
 
     public Integer getElapsed();
+
+  public void setElapsed(Integer i);
 }

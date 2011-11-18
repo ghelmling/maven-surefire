@@ -31,7 +31,7 @@ public class SimpleReportEntry
 
     private final StackTraceWriter stackTraceWriter;
 
-    private final Integer elapsed;
+    private Integer elapsed;
 
     public SimpleReportEntry( String source, String name )
     {
@@ -103,7 +103,11 @@ public class SimpleReportEntry
         return elapsed;
     }
 
-    public String toString()
+  public void setElapsed(Integer i) {
+    elapsed = i;
+  }
+
+  public String toString()
     {
         return "ReportEntry{" + "source='" + source + '\'' + ", name='" + name + '\'' + ", stackTraceWriter="
             + stackTraceWriter + ", elapsed=" + elapsed + '}';

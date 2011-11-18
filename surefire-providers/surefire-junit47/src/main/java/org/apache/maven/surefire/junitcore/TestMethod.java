@@ -19,10 +19,7 @@ package org.apache.maven.surefire.junitcore;
  * under the License.
  */
 
-import org.apache.maven.surefire.report.ConsoleOutputReceiver;
-import org.apache.maven.surefire.report.ConsoleOutputReceiverForCurrentThread;
-import org.apache.maven.surefire.report.ReportEntry;
-import org.apache.maven.surefire.report.RunListener;
+import org.apache.maven.surefire.report.*;
 
 /**
  * Represents the test-state of a single test method that is run.
@@ -78,10 +75,15 @@ class TestMethod
         setEndTime();
     }
 
-    private void setEndTime()
-    {
-        this.endTime = System.currentTimeMillis();
-    }
+  private void setEndTime() {
+    this.endTime = System.currentTimeMillis();
+
+    Integer totalTime = new Integer((int) (endTime - startTime));
+    if (ignored != null) ignored.setElapsed(totalTime);
+    if (testFailure != null) testFailure.setElapsed(totalTime);
+    if (testError != null) testError.setElapsed(totalTime);
+    if (description != null) description.setElapsed(totalTime);
+  }
 
     public int getElapsed()
     {

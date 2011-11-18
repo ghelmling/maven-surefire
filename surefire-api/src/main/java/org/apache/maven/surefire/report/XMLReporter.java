@@ -97,7 +97,7 @@ public class XMLReporter
     {
         super.testSetCompleted( report );
 
-        long runTime = System.currentTimeMillis() - testSetStartTime;
+        long runTime = report.getElapsed().intValue();
 
         Xpp3Dom testSuite = createTestSuiteElement( report, runTime );
 
